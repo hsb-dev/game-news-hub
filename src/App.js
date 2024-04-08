@@ -1,11 +1,12 @@
 import "./reset.css";
 import logos from "./logo.svg";
+import downArrow from "./img/down-arrow.svg";
 import searchIcon from "./img/search.svg";
 import "./App.css";
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Navbar></Navbar>
       <Subnavbar></Subnavbar>
     </div>
@@ -15,23 +16,13 @@ function App() {
 function Navbar() {
   return (
     <div>
-      <div className="navbar">
-        <img alt="" src={logos} width="32" height="32" className="logo-img" />
-        <div className="search-bar">
-        <img alt="" src={searchIcon} width="24" height="24" className="search-icon" />
-        <input className="search-area" type="text" />
-        </div>
-        <div className="subnavbar-link">
-          <div style={{ margin: "auto" }}>
-            <a href="" className="title-text-regist">
-              commit test
-            </a>
-            <a href="" className="title-text-login">
-              회원가입
-            </a>
-          </div>
-        </div>
-        
+      <div className="Navbar">
+        <img src={logos} width="32" height="32" />
+      <div className="Navbar-right-area">
+        <div className="Search-area"></div>
+        <div className="Login">로그인</div>
+        <div className="Regist">회원가입</div>
+      </div>
       </div>
     </div>
   );
@@ -39,17 +30,20 @@ function Navbar() {
 
 function Subnavbar(){
   return(
-    <div className="navbar" style={{borderBottom: "1px solid #000"}}>
-      <div className="navbar-link">
-          <div style={{ margin: "auto" }}>
-            <a href="" className="title-text-news">
-              News
-            </a>
-            <a href="" className="title-text-contents">
-              Contents
-            </a>
-          </div>
+    <div style={{borderBottom: "1px solid #e3e3e3", width: "100%"}}>
+      <div className="Subnavbar">
+        <div className="Subnavbar-left-area">
+          <div className="News-tab">NEWS</div>
+          <div className="Topics-tab">TOPICS</div>
+          <div className="Tab-solid"></div>
         </div>
+
+        <div className="Sort-area">
+          <div className="Sort-area-text">sort by newest</div>
+        <img src={downArrow} width="16" height="16" style={{margin: "auto"}}/>
+        </div>
+        
+      </div>
     </div>
   );
 }
