@@ -3,6 +3,8 @@ div{
 }
 
 
+
+
 /*이 아래는 navbar 1*/
 .Navbar{
   width: 1128px;
@@ -23,13 +25,26 @@ height: 32px;
 background: #f3f3f3;
 margin-right: 32px;
 border-radius: 4px;
+padding: 4px 0 4px 8px;
+display: flex;
 }
+
+.Search-input{
+  border: none;
+  background: none;
+  padding: 0px;
+  margin-left: 4px;
+  width: 172px;
+}
+
+input:focus {outline:none;}
 
 .Login{
   font-size: 14px;
   line-height: 32px;
   color: #b3b3b3;
   margin-right: 16px;
+  cursor:pointer;
 }
 
 .Regist{
@@ -41,6 +56,12 @@ border-radius: 4px;
   line-height: 32px;
   color: #ffffff;
   border-radius: 4px;
+  cursor:pointer;
+}
+
+.Menu-hamburger{
+  margin: auto;
+  display: none;
 }
 
 /*이 아래는 navbar 2*/
@@ -71,6 +92,7 @@ border-radius: 4px;
   line-height: 40px;
   margin-right: 24px;
   font-size: 14px;
+  cursor:pointer;
 }
 
 
@@ -85,10 +107,38 @@ border-radius: 4px;
 .Sort-area{
   display: flex;
   height: 100%;
+  cursor:pointer;
 }
 
 .Sort-area-text{
   font-size: 14px;
   line-height: 16px;
-  margin: auto;
+  margin: 10px 0px 14px 0;
+}
+
+.Sort-area-arrow{
+  margin: 10px 0px 14px 0;
+}
+
+
+
+/* 창크기 1128언더 */
+@media (max-width:1128px){
+  .Navbar{
+    width: 100vw;
+  }
+  .Subnavbar{
+    width: 100vw;
+  }
+}
+
+/* 창크기 445언더 */
+@media (max-width:445px){
+  .Search-area, .Login,.Regist{
+    display: none;
+    }
+  .Menu-hamburger{
+    display: inline;
+    cursor:pointer;
+  }
 }
