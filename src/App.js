@@ -24,7 +24,7 @@ function Navbar() {
         <div className="subnavbar-link">
           <div style={{ margin: "auto" }}>
             <a href="" className="title-text-regist">
-              로그인
+              commit test
             </a>
             <a href="" className="title-text-login">
               회원가입
