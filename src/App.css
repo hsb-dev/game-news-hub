@@ -205,6 +205,7 @@ input:focus {outline:none;}
 
 
 .News-contents-right{
+  margin-left: 16px;
   width: 160px;
   height: 128px;
   overflow:hidden;
@@ -241,6 +242,23 @@ object-fit: cover;
   .Subnavbar{
     width: 100vw;
   }
+
+  .Newsboard-area{
+    width: 100vw;
+    grid-template-columns: 1fr;
+  }
+
+  .News-contents{
+    width: 100%;
+  }
+
+  .Footer-content{
+    width: 100vw;
+  }
+
+  .News-contents-left{
+    width: calc(100% - 160px);
+  }
 }
 
 /* 창크기 445언더 */
@@ -251,5 +269,15 @@ object-fit: cover;
   .Menu-hamburger{
     display: inline;
     cursor:pointer;
+  }
+
+  .News-contents-left{
+    width: 100%;
+  }
+}
+
+@media (max-width:320px){
+  .News-contents-right{
+    display: none;
   }
 }
