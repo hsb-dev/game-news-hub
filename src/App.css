@@ -2,6 +2,39 @@ div{
   box-sizing: border-box;
 }
 
+.Header{
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  background: #ffffff;
+}
+
+
+/* 클래스 붙이기용 */
+
+.radius{
+  border-radius: 4px;
+}
+
+.font-s{
+  font-size: 14px;
+}
+
+.font-c-b3{
+  color: #b3b3b3;
+}
+
+.font-lh-20{
+  line-height: 20px;
+}
+
+.font-c-green{
+  color: #66A500;
+}
+
+.auto{
+  margin: auto;
+}
 
 
 
@@ -24,7 +57,7 @@ width: 214px;
 height: 32px;
 background: #f3f3f3;
 margin-right: 32px;
-border-radius: 4px;
+
 padding: 4px 0 4px 8px;
 display: flex;
 }
@@ -40,7 +73,6 @@ display: flex;
 input:focus {outline:none;}
 
 .Login{
-  font-size: 14px;
   line-height: 32px;
   color: #b3b3b3;
   margin-right: 16px;
@@ -52,10 +84,8 @@ input:focus {outline:none;}
   height: 100%;
   background: #222222;
   text-align: center;
-  font-size: 14px;
   line-height: 32px;
   color: #ffffff;
-  border-radius: 4px;
   cursor:pointer;
 }
 
@@ -75,8 +105,8 @@ input:focus {outline:none;}
   justify-content: space-between;
 }
 
-/* 탭 언더바 */
-.Tab-solid{
+
+.Tab-solid{ /* 탭 언더바 */
   top: 95px;
   position: absolute;
   float: left;
@@ -91,7 +121,6 @@ input:focus {outline:none;}
 .News-tab, .Topics-tab{
   line-height: 40px;
   margin-right: 24px;
-  font-size: 14px;
   cursor:pointer;
 }
 
@@ -111,7 +140,6 @@ input:focus {outline:none;}
 }
 
 .Sort-area-text{
-  font-size: 14px;
   line-height: 16px;
   margin: 10px 0px 14px 0;
 }
@@ -121,6 +149,89 @@ input:focus {outline:none;}
 }
 
 
+/*이 아래는 News Board*/
+.Newsboard-area{
+  width: 1128px;
+  margin: auto;
+  margin-top: 24px;
+  padding: 97px 16px 0px 16px;
+  display: grid;
+  grid-template-columns: 540px 540px;
+  gap: 16px;
+}
+
+
+.News-contents{
+  border: solid 1px #f3f3f3;
+  width: 540px;
+  height: 160px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.News-contents-left{
+  width: 332px;
+  height: 128px;
+}
+
+.News-contents-left-info{
+ display: flex;
+ justify-content: space-between;
+}
+
+
+.News-contents-left-title{
+  margin-top: 12px;
+  line-height: 24px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.News-contents-left-text{
+  margin-top: 8px;
+  line-height: 20px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+
+.News-contents-right{
+  width: 160px;
+  height: 128px;
+  overflow:hidden;
+}
+
+.News-contents-right-img{
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+/* 이 아래는 Footer */
+.Footer{
+  width: 100%;
+  height: 40px;
+  margin-top: 24px;
+  border-top: solid 1px #e3e3e3;
+}
+
+.Footer-content{
+  width: 1124px;
+  margin: auto;
+  height: 100%;
+  padding: 0 16px 0 16px;
+  line-height: 40px;
+  color: #b3b3b3;
+}
 
 /* 창크기 1128언더 */
 @media (max-width:1128px){
