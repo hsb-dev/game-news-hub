@@ -1,0 +1,57 @@
+.subnavbar{
+  width: 1128px;
+  height: 40px;
+  margin: auto;
+  padding: 0px 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.tab-solid{ /* 탭 언더바 */
+  top: 95px;
+  position: absolute;
+  float: left;
+  width: 40px;
+  border-bottom: 2px solid #222222;
+} 
+
+.subnavbar-left-area{
+  display: flex;
+}
+
+.news-tab, .topics-tab{
+  line-height: 40px;
+  margin-right: 24px;
+  cursor:pointer;
+}
+
+
+.news-tab{
+ font-weight: 600;
+}
+
+.topics-tab{
+  color: #b3b3b3;
+ }
+
+.sort-area{
+  display: flex;
+  height: 100%;
+  cursor:pointer;
+}
+
+.sort-area-text{
+  line-height: 16px;
+  margin: 10px 0px 14px 0;
+}
+
+.sort-area-arrow{
+  margin: 10px 0px 14px 0;
+}
+
+@media (max-width:1128px){
+  .subnavbar{
+    width: 100vw;
+  }
+}

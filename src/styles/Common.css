@@ -1,0 +1,37 @@
+div{
+  box-sizing: border-box;
+}
+
+.header{
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  background: #ffffff;
+}
+
+
+/* 공통 */
+
+.radius{
+  border-radius: 4px;
+}
+
+.font-s{
+  font-size: 14px;
+}
+
+.font-c-b3{
+  color: #b3b3b3;
+}
+
+.font-lh-20{
+  line-height: 20px;
+}
+
+.font-c-green{
+  color: #66A500;
+}
+
+.auto{
+  margin: auto;
+}

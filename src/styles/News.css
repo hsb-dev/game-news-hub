@@ -1,0 +1,98 @@
+.newsboard-area{
+  width: 1128px;
+  margin: auto;
+  margin-top: 24px;
+  padding: 97px 16px 0px 16px;
+  display: grid;
+  grid-template-columns: 540px 540px;
+  gap: 16px;
+}
+
+
+.news-contents{
+  border: solid 1px #f3f3f3;
+  width: 540px;
+  height: 160px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.news-contents-left{
+  width: 332px;
+  height: 128px;
+}
+
+.news-contents-left-info{
+ display: flex;
+ justify-content: space-between;
+}
+
+
+.news-contents-left-title{
+  margin-top: 12px;
+  line-height: 24px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.news-contents-left-text{
+  margin-top: 8px;
+  line-height: 20px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+
+.news-contents-right{
+  margin-left: 16px;
+  width: 160px;
+  height: 128px;
+  overflow:hidden;
+}
+
+.news-contents-right-img{
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+/* 창크기 1128언더 */
+@media (max-width:1128px){
+
+  .newsboard-area{
+    width: 100vw;
+    grid-template-columns: 1fr;
+  }
+
+  .news-contents{
+    width: 100%;
+  }
+
+
+  .news-contents-left{
+    width: calc(100% - 160px);
+  }
+}
+
+/* 창크기 445언더 */
+@media (max-width:445px){
+
+  .news-contents-left{
+    width: 100%;
+  }
+}
+
+@media (max-width:320px){
+  .news-contents-right{
+    display: none;
+  }
+}
