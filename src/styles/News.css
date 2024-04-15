@@ -69,7 +69,16 @@ object-fit: cover;
 }
 
 .more-btn{
-  grid-column: 1 / span 2
+  grid-column: 1 / span 2;
+  background: none;
+  border: none;
+  font-size: 16px;
+  height: 40px;
+  width: 400px;
+  margin: 0.5rem auto;
+  color: #222222;
+  font-family: "PretendardVariable";
+  text-decoration: underline;
 }
 
 /* 창크기 1128언더 */

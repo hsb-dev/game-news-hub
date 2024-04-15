@@ -23,6 +23,7 @@ function NewsBoard() {
       setPage(page+1);
     }
 
+
     useEffect(()=>{
       axios.get(`${process.env.REACT_APP_API_URL}/news?page=${page}&pageCount=${pageCount}&order=${order}`).then((response)=>{
         setNewsList(newsList.concat(response.data));
@@ -76,7 +77,7 @@ function NewsBoard() {
           );
         })}
         {
-          showMoreButton && <button className="more-btn" onClick={onClickMore}>더보기</button>
+          showMoreButton && <button className="more-btn" onClick={onClickMore}>&#x1F3AE; 뉴스 더 불러오기+</button>
         }
       </div>
     );

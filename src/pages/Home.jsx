@@ -4,6 +4,7 @@ import Subnavbar from "../components/Subnavbar";
 import NewsBoard from "./NewsBoard";
 import Footer from "../components/Footer";
 import "../styles/Common.css";
+import Anchor from "../components/Anchor";
 
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
         <Subnavbar />
       </div>
       <NewsBoard />
+      <Anchor/>
       <Footer />
     </div>
   );

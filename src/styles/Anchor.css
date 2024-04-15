@@ -1,0 +1,15 @@
+.anchor{
+    position: fixed;
+    width: 64px;
+    height: 64px;
+    background: #22222290;
+    border-radius: 32px;
+    bottom: 16px;
+    right: 28px;
+    padding: auto;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 9px;
+    padding-top: 24px;
+}
