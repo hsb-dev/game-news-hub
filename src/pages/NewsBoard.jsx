@@ -15,7 +15,7 @@ function NewsBoard() {
     }
 
     useEffect(()=>{
-      axios.get(`https://asia-northeast3-gamenews-collect.cloudfunctions.net/news?page=${page}&pageCount=${pageCount}&order=${order}`).then((response)=>{
+      axios.get(`${process.env.REACT_APP_API_URL}/news?page=${page}&pageCount=${pageCount}&order=${order}`).then((response)=>{
         setNewsList(newsList.concat(response.data));
        })
        .catch(()=>{
@@ -51,7 +51,7 @@ function NewsBoard() {
               </div>
               {/* 우측 이미지 */}
               <div className="news-contents-right radius">
-                <img src={`https://asia-northeast3-gamenews-collect.cloudfunctions.net/image?url=${news.thumbnailUrl}`} className="news-contents-right-img" />
+                <img src={`${process.env.REACT_APP_API_URL}/image?url=${news.thumbnailUrl}`} className="news-contents-right-img" />
               </div>
             </div>
           );
