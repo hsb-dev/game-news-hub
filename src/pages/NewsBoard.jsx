@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import "../styles/News.css"
 import axios from "axios"
 import dayjs from "dayjs"
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 import colors from "../assets/colors.json";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault('Asia/Seoul');
 
 function NewsBoard() {
     const [newsList, setNewsList] = useState([]);
@@ -49,7 +55,7 @@ function NewsBoard() {
                   </div>
                   <div className="news-contents-left-info-time font-s font-c-b3 font-lh-20">
                     {
-                      dayjs.unix(news.date._seconds).format('YY/MM/DD HH:mm')
+                      dayjs(news.date).format("YY/MM/DD HH:mm")
                     } 
                   </div>
                 </div>
