@@ -1,60 +1,62 @@
-import sampleImg from "../assets/images/samepl-img.jpg";
+import React, { useEffect, useState } from "react";
 import "../styles/News.css"
-import sample from "../assets/sample-json/sample.json"
-import axios from 'axios'
-
+import axios from "axios"
+import dayjs from 'dayjs'
 
 function NewsBoard() {
+    const [newsList, setNewsList] = useState([]);
 
-    let data = sample;
-    let postYear = data.map((row) => row.date.substring(2, 4));
-    let postMonth = data.map((row) => row.date.substring(5, 7));
-    let postDay = data.map((row) => row.date.substring(8, 10));
-    let postTime = data.map((row) => row.date.substring(11, 16));
+    const [page, setPage] = useState(0);
+    const [pageCount, setPagecount] = useState(10);
+    const [order, setOrder] = useState("desc");
 
+    const onClickMore = () => {
+      setPage(page+1);
+    }
 
-    axios.get(data.map((row) => row.thumbnailUrl)).then((asd)=>{console.log(asd.data)})
-    .catch(()=>{
-      console.log('망했음')
-    })
-
+    useEffect(()=>{
+      axios.get(`https://asia-northeast3-gamenews-collect.cloudfunctions.net/news?page=${page}&pageCount=${pageCount}&order=${order}`).then((response)=>{
+        setNewsList(newsList.concat(response.data));
+       })
+       .catch(()=>{
+         console.log('error');
+       })
+    },[page])
     
-    
-
     return (
       <div className="newsboard-area">
-        {data.map(function (a, i) {
+        {newsList.map(function (news) {
           return (
-            <div className="news-contents radius">
+            <div className="news-contents radius" key={news.id}>
               {/* 좌측 텍스트 영역 */}
               <div className="news-contents-left">
                 <div className="news-contents-left-info">
                   {/* class -company, -time은 현재 css에서 미사용 */}
                   <div className="news-contents-left-info-company font-s font-c-green font-lh-20">
-                    {a.publisher}
+                    {news.publisher}
                   </div>
                   <div className="news-contents-left-info-time font-s font-c-b3 font-lh-20">
                     {
-                      
-                    postYear[i] + "/" + postMonth[i] + "/" + postDay[i] + " " + postTime[i]
-                    }
+                      dayjs(news.date.toDate).format('YY/MM/DD HH:mm')
+                    } 
                   </div>
                 </div>
   
                 <div className="news-contents-left-title">
-                {a.title}
+                {news.title}
                 </div>
                 <div className="news-contents-left-text font-s font-c-b3">
-                  {a.description}
+                  {news.description}
                 </div>
               </div>
               {/* 우측 이미지 */}
               <div className="news-contents-right radius">
-                <img src={sampleImg} className="news-contents-right-img" />
+                <img src={`https://asia-northeast3-gamenews-collect.cloudfunctions.net/image?url=${news.thumbnailUrl}`} className="news-contents-right-img" />
               </div>
             </div>
           );
         })}
+        <button onClick={onClickMore}>더보기</button>
       </div>
     );
   }

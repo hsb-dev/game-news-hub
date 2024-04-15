@@ -35,3 +35,9 @@ div{
 .auto{
   margin: auto;
 }
+
+@media (max-width:1128px){
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  }
