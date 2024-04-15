@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/News.css"
 import axios from "axios"
-import dayjs from 'dayjs'
+import dayjs from "dayjs"
 import colors from "../assets/colors.json";
 
 function NewsBoard() {
