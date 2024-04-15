@@ -9,6 +9,17 @@ div{
   background: #ffffff;
 }
 
+a { 
+  text-decoration: none; outline: none;
+  color: #222222;
+}
+a:hover, a:active {
+  text-decoration: none; 
+}
+
+a:hover .news-contents-left-title {
+  text-decoration: underline;
+}
 
 /* 공통 */
 
@@ -18,6 +29,10 @@ div{
 
 .font-s{
   font-size: 14px;
+}
+
+.font-bold{
+  font-weight: 500;
 }
 
 .font-c-b3{

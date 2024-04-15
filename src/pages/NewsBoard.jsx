@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/News.css"
 import axios from "axios"
 import dayjs from 'dayjs'
+import colors from "../assets/colors.json";
 
 function NewsBoard() {
     const [newsList, setNewsList] = useState([]);
@@ -10,6 +11,8 @@ function NewsBoard() {
     const [pageCount, setPagecount] = useState(10);
     const [order, setOrder] = useState("desc");
 
+    const [showMoreButton, setShowMoreButton] = useState(true);
+
     const onClickMore = () => {
       setPage(page+1);
     }
@@ -17,6 +20,10 @@ function NewsBoard() {
     useEffect(()=>{
       axios.get(`${process.env.REACT_APP_API_URL}/news?page=${page}&pageCount=${pageCount}&order=${order}`).then((response)=>{
         setNewsList(newsList.concat(response.data));
+
+        if(response.data.length < pageCount){
+          setShowMoreButton(false);
+        }
        })
        .catch(()=>{
          console.log('error');
@@ -27,17 +34,22 @@ function NewsBoard() {
       <div className="newsboard-area">
         {newsList.map(function (news) {
           return (
-            <div className="news-contents radius" key={news.id}>
+            <a className="news-contents-container" href={news.link} key={news.id} target='_blank'>
+            <div className="news-contents radius">
               {/* 좌측 텍스트 영역 */}
               <div className="news-contents-left">
                 <div className="news-contents-left-info">
                   {/* class -company, -time은 현재 css에서 미사용 */}
-                  <div className="news-contents-left-info-company font-s font-c-green font-lh-20">
+                  <div className="news-contents-left-info-company font-s font-bold font-lh-20"
+                    style={{
+                      color: colors[news.publisher],
+                    }}
+                  >
                     {news.publisher}
                   </div>
                   <div className="news-contents-left-info-time font-s font-c-b3 font-lh-20">
                     {
-                      dayjs(news.date.toDate).format('YY/MM/DD HH:mm')
+                      dayjs.unix(news.date._seconds).format('YY/MM/DD HH:mm')
                     } 
                   </div>
                 </div>
@@ -54,9 +66,12 @@ function NewsBoard() {
                 <img src={`${process.env.REACT_APP_API_URL}/image?url=${news.thumbnailUrl}`} className="news-contents-right-img" />
               </div>
             </div>
+            </a>
           );
         })}
-        <button onClick={onClickMore}>더보기</button>
+        {
+          showMoreButton && <button className="more-btn" onClick={onClickMore}>더보기</button>
+        }
       </div>
     );
   }

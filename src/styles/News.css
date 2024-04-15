@@ -17,6 +17,9 @@
   display: flex;
   justify-content: space-between;
 }
+.news-contents-container{
+  display: inline-block;
+}
 
 .news-contents-left{
   width: 332px;
@@ -65,6 +68,10 @@ height: 100%;
 object-fit: cover;
 }
 
+.more-btn{
+  grid-column: 1 / span 2
+}
+
 /* 창크기 1128언더 */
 @media (max-width:1128px){
 
@@ -73,6 +80,10 @@ object-fit: cover;
     grid-template-columns: 1fr;
   }
 
+  .more-btn{
+    grid-column: 1 
+  }
+  
   .news-contents{
     width: 100%;
   }
@@ -91,7 +102,7 @@ object-fit: cover;
   }
 }
 
-@media (max-width:320px){
+@media (max-width:360px){
   .news-contents-right{
     display: none;
   }
