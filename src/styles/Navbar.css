@@ -71,7 +71,7 @@ input:focus {outline:none;}
   }
 }
 
-@media (max-width:445px){
+@media (max-width:555px){
   .search-area, .login, .regist{
     display: none;
     }
