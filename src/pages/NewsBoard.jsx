@@ -77,7 +77,7 @@ function NewsBoard() {
           );
         })}
         {
-          showMoreButton && <button className="more-btn" onClick={onClickMore}>&#x1F3AE; 뉴스 더 불러오기+</button>
+          showMoreButton && <button className="more-btn" onClick={onClickMore} style={{cursor : "pointer"}}>&#x1F3AE; 뉴스 더 불러오기+</button>
         }
       </div>
     );
