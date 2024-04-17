@@ -12,3 +12,13 @@
     padding-left: 9px;
     padding-top: 24px;
 }
+
+@media (max-width:445px){
+    .anchor{
+        width: 48px;
+        height: 48px;
+        font-size: 14px;
+        padding-left: 4px;
+        padding-top: 17px;
+    }
+  }

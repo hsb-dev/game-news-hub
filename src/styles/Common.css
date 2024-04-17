@@ -13,6 +13,7 @@ a {
   text-decoration: none; outline: none;
   color: #222222;
 }
+
 a:hover, a:active {
   text-decoration: none; 
 }

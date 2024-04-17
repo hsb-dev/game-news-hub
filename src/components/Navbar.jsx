@@ -12,7 +12,10 @@ function Navbar() {
     return (
       <div>
         <div className="navbar">
-          <img src={logos} width="32" height="32" style={{ cursor: "pointer" }} />
+          <div style={{ display:"flex" }}>
+          <img src={logos} width="84" height="32" style={{ cursor: "pointer" }} />
+          <div className="navbar-version">v 1.0</div>
+          </div>
           <div className="navbar-right-area">
             <div className="search-area radius" onClick={comingSoon}>
               <img

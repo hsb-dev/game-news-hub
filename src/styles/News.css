@@ -4,14 +4,13 @@
   margin-top: 24px;
   padding: 97px 16px 0px 16px;
   display: grid;
-  grid-template-columns: 540px 540px;
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
 
 .news-contents{
   border: solid 1px #f3f3f3;
-  width: 540px;
   height: 160px;
   padding: 16px;
   display: flex;
@@ -22,7 +21,7 @@
 }
 
 .news-contents-left{
-  width: 332px;
+  width: 75%;
   height: 128px;
 }
 
@@ -57,7 +56,7 @@
 
 .news-contents-right{
   margin-left: 16px;
-  width: 160px;
+  width: 25%;
   height: 128px;
   overflow:hidden;
 }
@@ -74,7 +73,7 @@ object-fit: cover;
   border: none;
   font-size: 16px;
   height: 40px;
-  width: 400px;
+  width: 100%;
   margin: 0.5rem auto;
   color: #222222;
   font-family: "PretendardVariable";
@@ -97,22 +96,19 @@ object-fit: cover;
     width: 100%;
   }
 
-
-  .news-contents-left{
-    width: calc(100% - 160px);
-  }
 }
 
 /* 창크기 445언더 */
 @media (max-width:445px){
 
-  .news-contents-left{
-    width: 100%;
-  }
+
 }
 
 @media (max-width:360px){
   .news-contents-right{
     display: none;
+  }
+  .news-contents-left{
+    width: 100%;
   }
 }
