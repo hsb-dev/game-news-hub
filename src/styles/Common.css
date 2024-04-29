@@ -22,6 +22,15 @@ a:hover .news-contents-left-title {
   text-decoration: underline;
 }
 
+a:hover .news-contents-left-text {
+  display: -webkit-box;
+}
+
+a:hover .dummy {
+  height: 0px;
+  transition: 0.5s;
+}
+
 /* 공통 */
 
 .radius{

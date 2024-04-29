@@ -1,6 +1,6 @@
 {
-    "GameMeca" : "#AD5656",
-    "Inven" : "#66A500",
-    "ThisIsGame" : "#DBAB00",
-    "Ruliweb" : "#6C95FF"
+    "GameMeca" : "linear-gradient(to right, #24235B, #921D1D)",
+    "Inven" : "linear-gradient(to right, #66A500, #DFD369)",
+    "ThisIsGame" : "linear-gradient(to right, #6AB186, #2B65BC)",
+    "Ruliweb" : "linear-gradient(to right, #070631, #151297)"
 }
