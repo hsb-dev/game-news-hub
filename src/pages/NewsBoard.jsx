@@ -27,6 +27,7 @@ function NewsBoard() {
     useEffect(()=>{
       axios.get(`${process.env.REACT_APP_API_URL}/news?page=${page}&pageCount=${pageCount}&order=${order}`).then((response)=>{
         setNewsList(newsList.concat(response.data));
+        console.log(newsList);
 
         if(response.data.length < pageCount){
           setShowMoreButton(false);
@@ -36,6 +37,7 @@ function NewsBoard() {
          console.log('error');
        })
     },[page])
+    
     
     return (
       <div className="newsboard-area">
