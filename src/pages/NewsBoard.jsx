@@ -5,6 +5,7 @@ import dayjs from "dayjs"
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import colors from "../assets/colors.json";
+import useDebounce from '../hooks/useDebounce';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -23,6 +24,8 @@ function NewsBoard() {
       setPage(page+1);
     }
 
+    const debouncedPage = useDebounce(page, 1000);
+    //디바운싱
 
     useEffect(()=>{
       axios.get(`${process.env.REACT_APP_API_URL}/news?page=${page}&pageCount=${pageCount}&order=${order}`).then((response)=>{
@@ -36,7 +39,7 @@ function NewsBoard() {
        .catch(()=>{
          console.log('error');
        })
-    },[page])
+    },[debouncedPage])
     
     
     return (
