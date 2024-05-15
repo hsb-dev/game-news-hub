@@ -10,7 +10,7 @@ import dropUp from "../assets/images/dropup.svg"
 function Filter() {
 
   const comingSoon = () => {
-    window.alert("📢 필터 서비스는 곧 개시할 예정입니다")
+    window.alert("📢 필터 서비스는 곧 개시할 예정입니다.")
   }
 
     return (

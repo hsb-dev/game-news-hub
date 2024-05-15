@@ -1,9 +1,9 @@
 $color-black: #222222;
 $color-white: #ffffff;
-$color-gray: #505050;
 $font-ss: 0.75rem;
 $font-s: 0.875rem;
 $line-m : 1.5rem;
+$skl-color: #b3b3b350;
 
 .skl-grid{
     width: 960px;
@@ -20,7 +20,7 @@ $line-m : 1.5rem;
 }
 
 .skl-content-img {
-    background-color: #505050;
+    background-color: $skl-color;
     width: 100%;
     height: 184px;
     border-radius: 8px;
@@ -38,7 +38,8 @@ $line-m : 1.5rem;
 }
 
 .skl-contents-tag {
-    background-color: #505050;
+    width: 56px;
+    background-color: $skl-color;
     border-radius: 10px;
     padding: 0 8px 0 8px;
     height: 20px;
@@ -48,7 +49,7 @@ $line-m : 1.5rem;
     margin-top: 6px;
     width: 100%;
     height: 48px;
-    background-color: #505050;
+    background-color: $skl-color;
     border-radius: 8px;
 }
 
@@ -60,7 +61,7 @@ $line-m : 1.5rem;
 }
 
 .skl-contents-info-pubname {
-    background-color: #505050;
+    background-color: $skl-color;
     width: 80px;
     height: 24px;
     border-radius: 8px;
@@ -68,7 +69,7 @@ $line-m : 1.5rem;
 
 .skl-contents-info-dates {
     width: 92px;
-    background-color: #505050;
+    background-color: $skl-color;
     height: 24px;
     border-radius: 8px;
 }

@@ -5,7 +5,7 @@ import searchIcon from "../assets/images/search.svg";
 import menuIcon from "../assets/images/menu-icon.svg";
 
 const comingSoon = () => {
-  window.alert("🔧 서비스 준비 중 입니다")
+  window.alert("🔧 서비스 준비 중 입니다.")
 }
 
 function Navbar() {

@@ -5,7 +5,6 @@ import Subnavbar from "../components/Subnavbar";
 import Filter from "../components/Filter";
 import NewsBoard from "./NewsBoard";
 import Footer from "../components/Footer";
-import Anchor from "../components/Anchor";
 
 function Home() {
   return (
@@ -17,7 +16,6 @@ function Home() {
         <Filter />
         <NewsBoard />
       </div>
-      <Anchor/>
     </div>
   );
 }
