@@ -1,9 +1,10 @@
 import "../styles/reset.css";
+import "../styles/Common.css";
 import Navbar from "../components/Navbar";
 import Subnavbar from "../components/Subnavbar";
+import Filter from "../components/Filter";
 import NewsBoard from "./NewsBoard";
 import Footer from "../components/Footer";
-import "../styles/Common.css";
 import Anchor from "../components/Anchor";
 
 function Home() {
@@ -11,11 +12,12 @@ function Home() {
     <div className="app">
       <div className="header">
         <Navbar />
-        <Subnavbar />
       </div>
-      <NewsBoard />
+      <div className="content-area">
+        <Filter />
+        <NewsBoard />
+      </div>
       <Anchor/>
-      <Footer />
     </div>
   );
 }

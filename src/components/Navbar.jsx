@@ -5,7 +5,7 @@ import searchIcon from "../assets/images/search.svg";
 import menuIcon from "../assets/images/menu-icon.svg";
 
 const comingSoon = () => {
-  window.alert("🔧 서비스 준비 중 입니다. 🔧")
+  window.alert("🔧 서비스 준비 중 입니다")
 }
 
 function Navbar() {
@@ -14,7 +14,7 @@ function Navbar() {
         <div className="navbar">
           <div style={{ display:"flex" }}>
           <img src={logos} width="84" height="32" style={{ cursor: "pointer" }} />
-          <div className="navbar-version">v 1.0</div>
+          <div className="navbar-version">v 1.1</div>
           </div>
           <div className="navbar-right-area">
             <div className="search-area radius" onClick={comingSoon}>

@@ -1,10 +1,10 @@
 .navbar{
-  width: 1128px;
+  width: 1286px;
   height: 56px;
   margin: auto;
   display: flex;
   justify-content: space-between;
-  padding: 12px 16px;
+  padding: 12px 0px;
 }
 
 .navbar-version{

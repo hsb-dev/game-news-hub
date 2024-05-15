@@ -1,0 +1,131 @@
+$color-black: #222222;
+$color-white: #ffffff;
+$color-gray: #505050;
+$font-ss: 0.75rem;
+$font-s: 0.875rem;
+$line-m : 1.5rem;
+
+a:hover {
+    .contents-title {
+        text-decoration: underline;
+    }
+
+    .contents-bg-dummy {
+        height: 70%;
+        transition: 0.5s;
+    }
+}
+
+
+@mixin textCut {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.news-container {
+    height: 100%;
+    width: 960px;
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    
+}
+
+.contents-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-img {
+    border: 1px #e3e3e3 solid;
+    width: 100%;
+    height: 184px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-position: center, center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.contents-over-bg {
+    height: 100%;
+}
+
+.contents-bg-dummy {
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+}
+
+.contents-subtext {
+    background-image: linear-gradient(to top, #22222290, #22222290 100%);
+    height: 30%;
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 0 8px 8px 8px;
+
+    p {
+        display: -webkit-box;
+        line-height: 20px;
+        color: $color-white;
+        font-size: $font-s;
+        @include textCut;
+    }
+}
+
+
+.contents-tags {
+    margin-top: 10px;
+    display: flex;
+    font-size: $font-ss;
+    font-weight: 600;
+    line-height: 1.25rem;
+    color: $color-white;
+}
+
+.contents-tag {
+    border-radius: 10px;
+    padding: 0 8px 0 8px;
+    background-color: #222222;
+}
+
+.contents-title {
+    display: -webkit-box;
+    margin-top: 6px;
+    color: $color-black;
+    width: 100%;
+    line-height: $line-m;
+    font-weight: 600;
+    @include textCut;
+}
+
+.contents-info {
+    margin-top: 8px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.contents-info-pubname {
+    font-size: $font-s;
+    display: flex;
+    color: $color-gray;
+    line-height: $line-m;
+    align-items: center;
+}
+
+.contents-info-pubdot {
+    margin: 0 4px 0 2px;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+}
+
+.contents-info-dates {
+    font-size: $font-s;
+    color: $color-gray;
+    line-height: $line-m;
+}

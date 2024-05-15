@@ -2,33 +2,30 @@ div{
   box-sizing: border-box;
 }
 
-.header{
-  position: fixed;
-  width: 100%;
-  top: 0;
-  background: #ffffff;
-}
-
 a { 
   text-decoration: none; outline: none;
   color: #222222;
 }
 
-a:hover, a:active {
-  text-decoration: none; 
+.header{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: #ffffff;
+  border-bottom: solid 1px #e3e3e3;
+}
+.content-area::-webkit-scrollbar {
+  display: none;
 }
 
-a:hover .news-contents-left-title {
-  text-decoration: underline;
-}
-
-a:hover .news-contents-left-text {
-  display: -webkit-box;
-}
-
-a:hover .dummy {
-  height: 0px;
-  transition: 0.5s;
+.content-area{
+  background-color: #FEFEFF;
+  height: 100dvh;
+  display: flex;
+  padding-top: 56px;
+  justify-content: center;
+  gap: 80px;
+  overflow: auto;
 }
 
 /* 공통 */

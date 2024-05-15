@@ -1,104 +1,117 @@
-import React, { useEffect, useState } from "react";
-import "../styles/News.css"
+import React, { useEffect, useState, useRef, useCallback } from "react";
+import "../styles/Contents.scss"
 import axios from "axios"
 import dayjs from "dayjs"
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import colors from "../assets/colors.json";
-import useDebounce from '../hooks/useDebounce';
+import Skeleton from "../components/Skeleton";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault('Asia/Seoul');
 
+
+
+
+
+
 function NewsBoard() {
+
+
   const [newsList, setNewsList] = useState([]);
-
   const [page, setPage] = useState(0);
-  const [pageCount, setPagecount] = useState(9);
+  const [pageCount, setPageCount] = useState(12); 
   const [order, setOrder] = useState("desc");
+  const [inObserve, setInObserve] = useState(true); 
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [showMoreButton, setShowMoreButton] = useState(true);
+  const target = useRef(null);
 
-  const onClickMore = () => {
-    setPage(page + 1);
-  }
+  const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 1,
+  };
 
-  const debouncedPage = useDebounce(page, 1000);
-  //디바운싱
+  const callback = (entries) => {
+    if (entries[0].isIntersecting && !isLoading && inObserve) {
+      setPage((prevPage) => prevPage + 1);
+      console.log("관측됨");
+    }
+  };
+
+  const observer = new IntersectionObserver(callback, options);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/news?page=${page}&pageCount=${pageCount}&order=${order}`).then((response) => {
-      setNewsList(newsList.concat(response.data));
-
-      if (response.data.length < pageCount) {
-        setShowMoreButton(false);
+    if (target.current) {
+      observer.observe(target.current);
+    }
+    return () => {
+      if (target.current) {
+        observer.unobserve(target.current);
       }
-    })
-      .catch(() => {
-        console.log('error');
+    };
+  }, [target, observer]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setInObserve(false);
+    axios.get(`${process.env.REACT_APP_API_URL}/news?page=${page}&pageCount=${pageCount}&order=${order}`)
+      .then((response) => {
+        setNewsList((prevNewsList) => [...prevNewsList, ...response.data]);
+        setIsLoading(false);
+        setInObserve(true);
+        if (response.data.length < pageCount) {
+          setInObserve(false);
+        }
       })
-  }, [debouncedPage])
+      .catch(() => {
+        setIsLoading(false);
+        console.log('error');
+      });
+  }, [page]);
+
 
 
   return (
-    <div className="newsboard-area" >
+    <div className="news-container">
       {newsList.map(function (news) {
         return (
-          <a className="news-contents-container"
-            href={news.link}
-            key={news.id}
-            target='_blank'
-            style={{
-              backgroundImage: `url("${process.env.REACT_APP_API_URL}/image?url=${news.thumbnailUrl}")`
-              , backgroundRepeat: "no-repeat"
-              , backgroundSize: "cover"
-              , backgroundPosition: "center,center"
-            }}
-          >
-            <div className="news-contents">
-              <div className="news-contents-left">
+          <a className="contents-card" href={news.link} key={news.id} target='_blank' >
 
-                <div className="news-contents-left-info-company font-s font-bold font-lh-20"
-                  style={{
-                    // color: colors[news.publisher]
-                    backgroundImage: colors[news.publisher]
-                  }}
-                >
-                  {news.publisher}
-                </div>
+            <div className="content-img" style={{ backgroundImage: `url("${process.env.REACT_APP_API_URL}/image?url=${news.thumbnailUrl}")` }}>
 
-                <div className="news-contents-title-area">
-                  <div className="dummy"> </div>
-                  <div className="news-contents-left-info-time font-s font-lh-20">
-                    {
-                      dayjs(news.date).format("YY/MM/DD HH:mm")
-                    }
-                  </div>
-
-                  <div className="news-contents-left-title">
-                    {news.title}
-                  </div>
-
-                  <div className="news-contents-left-text font-s font-c-b3">
-                  {news.description}
-                </div>
-                </div>
-    
+              <div className="contents-over-bg">
+                <div className="contents-bg-dummy"></div>
+                <div className="contents-subtext"><p>{news.description}</p></div>
               </div>
-              {/* 우측 이미지 */}
-              {/* <div className="news-contents-right radius">
-                <img src={`${process.env.REACT_APP_API_URL}/image?url=${news.thumbnailUrl}`} className="news-contents-right-img" />
-              </div> */}
             </div>
+
+            <div className="contents-tags">
+              <div className="contents-tag">게임토픽</div>
+            </div>
+            <div className="contents-title">{news.title}</div>
+
+            <div className="contents-info">
+              <div className="contents-info-pubname">
+                <div className="contents-info-pubdot" style={{ backgroundColor: colors[news.publisher] }}></div>
+                {news.publisher}
+              </div>
+              <div className="contents-info-dates">{dayjs(news.date).format("YY.MM.DD HH:mm")}</div>
+            </div>
+
           </a>
-        );
+        )
       })}
       {
-        showMoreButton && <button className="more-btn" onClick={onClickMore} style={{ cursor: "pointer" }}>&#x1F3AE; 뉴스 더 불러오기+</button>
+        isLoading && <Skeleton />
+      }
+      {
+        inObserve && <div ref={target} style={{ height: "1px", backgroundColor: "red" }}>target</div>
       }
     </div>
-  );
+  )
 }
 
 export default NewsBoard;

@@ -1,0 +1,64 @@
+$color-black: #222222;
+$color-white: #ffffff;
+$color-gray: #505050;
+$font-ss: 0.75rem;
+$font-s: 0.875rem;
+$line-m : 1.5rem;
+
+
+.filter-container{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 248px;
+    top: 40px;
+    position: -webkit-sticky;
+    position: sticky;
+    height: 0;
+}
+
+.filter-dropbox{
+    height: 220px;
+    background-color: $color-white;
+    border: 1px solid #E3E3E3;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-title{
+    width: 100%;
+    line-height: 20px;
+    font-weight: 700;
+    width: 100%;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter-media-companys{
+    width: 100%;
+    padding: 0 30px 16px 30px ;
+    height: 170px;
+
+}
+
+.company{
+    display: flex;
+    font-size: $font-s;
+    line-height: 24px;
+    margin-bottom: 8px;
+    align-items: center;
+    color: #505050;
+
+    img {
+        margin-right: 6px;
+    }
+}
+
+.dots{
+    margin: 0 8px 0 2px;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+}

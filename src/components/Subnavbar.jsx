@@ -3,7 +3,7 @@ import "../styles/Common.css"
 import downArrow from "../assets/images/down-arrow.svg";
 
 const comingSoon = () => {
-  window.alert("🔧 서비스 준비 중 입니다. 🔧")
+  window.alert("📢 필터 서비스는 곧 개시할 예정입니다")
 }
 
 function Subnavbar() {
