@@ -30,6 +30,7 @@ function Navbar() {
             <a className="regist font-s radius" onClick={comingSoon}>회원가입</a>
             <img
               src={menuIcon}
+              onClick={comingSoon}
               className="menu-hamburger"
               width="24"
               height="24"

@@ -16,6 +16,12 @@ a:hover {
     }
 }
 
+a:visited{
+    .contents-title {
+        color: #b3b3b3;
+    }
+}
+
 
 @mixin textCut {
     overflow: hidden;
