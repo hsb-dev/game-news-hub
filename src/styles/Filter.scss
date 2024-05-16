@@ -95,9 +95,9 @@ $line-m : 1.5rem;
 @media (max-width:663px){
     .filter-container{
         width: 100%;
-        top: -10px;
+        margin: auto;
     }
     .filter-dropbox:nth-child(1){
-        width: 100%
+        width: 100%;
     }
   }

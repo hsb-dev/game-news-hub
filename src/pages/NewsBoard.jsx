@@ -109,7 +109,7 @@ function NewsBoard() {
           isLoading && <Skeleton />
         }
         {
-          inObserve && <div ref={target} style={{ height: "1px", backgroundColor: "red" }}>target</div>
+          inObserve && <div ref={target} style={{ height: "1px",width: "1px" , backgroundColor: "red" }}>target</div>
         }
         <div className="anchor" onClick={MoveToTop} style={{ cursor: "pointer" }}>맨 위로</div>
       </div>

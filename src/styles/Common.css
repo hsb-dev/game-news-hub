@@ -78,6 +78,6 @@ a {
   @media (max-width:663px){
     .content-area{
       width: 100%;
-      padding: 76px 16px;
+      padding: 76px 16px 0px 16px;
     }
   }
