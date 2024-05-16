@@ -17,7 +17,7 @@ function Filter() {
       <div className="filter-container" onClick={comingSoon}>
         <div className="filter-dropbox">
             <div className="filter-title">
-              📰 언론 <img src={dropUp} />
+              📰 언론 <img className="dropdown" src={dropUp} /><img className="dropUp" src={dropDown} />
             </div>
             <div className="filter-media-companys">
               <div className="company" id="companyAll"><img src={checkIcon}/>언론 전체 보기</div>

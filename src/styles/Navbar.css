@@ -1,10 +1,10 @@
 .navbar{
-  width: 1286px;
+  width: 1318px;
   height: 56px;
   margin: auto;
   display: flex;
   justify-content: space-between;
-  padding: 12px 0px;
+  padding: 12px 16px;
 }
 
 .navbar-version{
@@ -65,13 +65,13 @@ input:focus {outline:none;}
 }
 
 
-@media (max-width:1128px){
+@media (max-width:1286px){
   .navbar{
     width: 100vw;
   }
 }
 
-@media (max-width:555px){
+@media (max-width:663px){
   .search-area, .login, .regist{
     display: none;
     }

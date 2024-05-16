@@ -35,13 +35,13 @@ a:hover {
 }
 
 .contents-card {
+    width: 304px;
     display: flex;
     flex-direction: column;
 }
 
 .content-img {
     border: 1px #e3e3e3 solid;
-    width: 100%;
     height: 184px;
     border-radius: 8px;
     overflow: hidden;
@@ -131,5 +131,30 @@ a:hover {
 }
 
 .topTarget {
+    width: 0px;
     height: 0px;
 }
+
+@media (max-width:1286px){
+    .news-container {
+        width: 632px;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+  }
+
+  @media (max-width:992px){
+    .news-container {
+        margin-top: 106px;
+    }
+  }
+
+  @media (max-width:663px){
+    .news-container {
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+    .contents-card {
+        width: 100%;
+    }
+  }
