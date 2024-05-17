@@ -2,6 +2,7 @@ import "../styles/Filter.scss"
 import checkIcon from "../assets/images/check-icon.svg"
 import dropDown from "../assets/images/dropdown.svg"
 import dropUp from "../assets/images/dropup.svg"
+import Footer from "../components/Footer";
 
 
 
@@ -37,6 +38,7 @@ function Filter() {
             ✒ 토픽 <img src={dropDown} />
             </div>
         </div>
+        <Footer className="footer"/>
       </div>
     );
   }

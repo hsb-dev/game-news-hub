@@ -4,7 +4,6 @@ import Navbar from "../components/Navbar";
 import Subnavbar from "../components/Subnavbar";
 import Filter from "../components/Filter";
 import NewsBoard from "./NewsBoard";
-import Footer from "../components/Footer";
 
 function Home() {
   return (
