@@ -1,22 +1,23 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import "../styles/Contents.scss"
-import axios from "axios"
-import dayjs from "dayjs"
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
+import "../styles/Contents.scss";
+import axios from "axios";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 import colors from "../assets/colors.json";
 import Skeleton from "../components/Skeleton";
 import "../styles/Anchor.css";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
-dayjs.tz.setDefault('Asia/Seoul');
+dayjs.tz.setDefault("Asia/Seoul");
 
 function NewsBoard() {
-
   const MoveToTop = () => {
-    document.querySelector(".topTarget").scrollIntoView({ behavior: "smooth", block: "end" });
-  }
+    document
+      .querySelector(".topTarget")
+      .scrollIntoView({ behavior: "smooth", block: "end" });
+  };
 
   const [newsList, setNewsList] = useState([]);
   const [page, setPage] = useState(0);
@@ -29,7 +30,7 @@ function NewsBoard() {
 
   const options = {
     root: null,
-    rootMargin: '0px',
+    rootMargin: "0px",
     threshold: 1,
   };
 
@@ -56,7 +57,10 @@ function NewsBoard() {
   useEffect(() => {
     setIsLoading(true);
     setInObserve(false);
-    axios.get(`${process.env.REACT_APP_API_URL}/news?page=${page}&pageCount=${pageCount}&order=${order}`)
+    axios
+      .get(
+        `${process.env.REACT_APP_API_URL}/news?page=${page}&pageCount=${pageCount}&order=${order}`
+      )
       .then((response) => {
         setNewsList((prevNewsList) => [...prevNewsList, ...response.data]);
         setIsLoading(false);
@@ -67,11 +71,9 @@ function NewsBoard() {
       })
       .catch(() => {
         setIsLoading(false);
-        console.log('error');
+        console.log("error");
       });
   }, [page]);
-
-
 
   return (
     <>
@@ -79,13 +81,23 @@ function NewsBoard() {
       <div className="news-container">
         {newsList.map(function (news) {
           return (
-            <a className="contents-card" href={news.link} key={news.id} target='_blank' >
-
-              <div className="content-img" style={{ backgroundImage: `url("${process.env.REACT_APP_API_URL}/image?url=${news.thumbnailUrl}")` }}>
-
+            <a
+              className="contents-card"
+              href={news.link}
+              key={news.id}
+              target="_blank"
+            >
+              <div
+                className="content-img"
+                style={{
+                  backgroundImage: `url("${process.env.REACT_APP_API_URL}/image?url=${news.thumbnailUrl}")`,
+                }}
+              >
                 <div className="contents-over-bg">
                   <div className="contents-bg-dummy"></div>
-                  <div className="contents-subtext"><p>{news.description}</p></div>
+                  <div className="contents-subtext">
+                    <p>{news.description}</p>
+                  </div>
                 </div>
               </div>
 
@@ -96,25 +108,38 @@ function NewsBoard() {
 
               <div className="contents-info">
                 <div className="contents-info-pubname">
-                  <div className="contents-info-pubdot" style={{ backgroundColor: colors[news.publisher] }}></div>
+                  <div
+                    className="contents-info-pubdot"
+                    style={{ backgroundColor: colors[news.publisher] }}
+                  ></div>
                   {news.publisher}
                 </div>
-                <div className="contents-info-dates">{dayjs(news.date).format("YY.MM.DD HH:mm")}</div>
+                <div className="contents-info-dates">
+                  {dayjs(news.date).format("YY.MM.DD HH:mm")}
+                </div>
               </div>
-
             </a>
-          )
+          );
         })}
-        {
-          isLoading && <Skeleton />
-        }
-        {
-          inObserve && <div ref={target} style={{ height: "1px",width: "1px" , backgroundColor: "red" }}>target</div>
-        }
-        <div className="anchor" onClick={MoveToTop} style={{ cursor: "pointer" }}>맨 위로</div>
+        {isLoading && <Skeleton />}
+        {inObserve && (
+          <div
+            ref={target}
+            style={{ height: "1px", width: "1px", backgroundColor: "red" }}
+          >
+            target
+          </div>
+        )}
+        <div
+          className="anchor"
+          onClick={MoveToTop}
+          style={{ cursor: "pointer" }}
+        >
+          맨 위로
+        </div>
       </div>
     </>
-  )
+  );
 }
 
 export default NewsBoard;
