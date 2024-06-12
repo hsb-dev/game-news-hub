@@ -96,12 +96,14 @@ function NewsBoard() {
                   backgroundImage: `url("${process.env.REACT_APP_API_URL}/image?url=${news.thumbnailUrl}")`,
                 }}
               >
-                <div className="contents-over-bg">
-                  <div className="contents-bg-dummy"></div>
-                  <div className="contents-subtext">
-                    <p>{news.description}</p>
+                {news.description && (
+                  <div className="contents-over-bg">
+                    <div className="contents-bg-dummy"></div>
+                    <div className="contents-subtext">
+                      <p>{news.description}</p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               <div className="contents-tags">
