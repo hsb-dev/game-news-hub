@@ -37,7 +37,6 @@ function NewsBoard() {
   const callback = (entries) => {
     if (entries[0].isIntersecting && !isLoading && inObserve) {
       setPage((prevPage) => prevPage + 1);
-      console.log("관측됨");
     }
   };
 
