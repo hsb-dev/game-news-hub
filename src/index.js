@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import Home from './pages/Home';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import Home from "./pages/Home";
+import reportWebVitals from "./reportWebVitals";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
@@ -13,14 +13,14 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
-  measurementId: process.env.REACT_APP_MEASUREMENT_ID
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+export const analytics = getAnalytics(app);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Home />

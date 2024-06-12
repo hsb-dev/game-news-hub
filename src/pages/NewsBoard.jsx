@@ -7,6 +7,8 @@ import timezone from "dayjs/plugin/timezone";
 import colors from "../assets/colors.json";
 import Skeleton from "../components/Skeleton";
 import "../styles/Anchor.css";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "..";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -77,6 +79,10 @@ function NewsBoard() {
       .scrollIntoView({ behavior: "smooth", block: "end" });
   };
 
+  const onClickNews = (id) => {
+    logEvent(analytics, "clickNews", { id: id });
+  };
+
   return (
     <>
       <div className="topTarget"></div>
@@ -89,6 +95,7 @@ function NewsBoard() {
               key={news.id}
               target="_blank"
               rel="noreferrer"
+              onClick={() => onClickNews(news.id)}
             >
               <div
                 className="content-img"
