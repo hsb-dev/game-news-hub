@@ -13,16 +13,13 @@ dayjs.extend(timezone);
 dayjs.tz.setDefault("Asia/Seoul");
 
 function NewsBoard() {
-  const MoveToTop = () => {
-    document
-      .querySelector(".topTarget")
-      .scrollIntoView({ behavior: "smooth", block: "end" });
-  };
-
+  // News List
   const [newsList, setNewsList] = useState([]);
   const [page, setPage] = useState(0);
   const [pageCount, setPageCount] = useState(12);
   const [order, setOrder] = useState("desc");
+
+  // Observer
   const [inObserve, setInObserve] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -34,24 +31,24 @@ function NewsBoard() {
     threshold: 1,
   };
 
-  const callback = (entries) => {
+  const onObserveTarget = (entries) => {
     if (entries[0].isIntersecting && !isLoading && inObserve) {
       setPage((prevPage) => prevPage + 1);
     }
   };
-
-  const observer = new IntersectionObserver(callback, options);
+  const observer = new IntersectionObserver(onObserveTarget, options);
 
   useEffect(() => {
-    if (target.current) {
-      observer.observe(target.current);
+    const currentTarget = target.current;
+    if (currentTarget) {
+      observer.observe(currentTarget);
     }
     return () => {
-      if (target.current) {
-        observer.unobserve(target.current);
+      if (currentTarget) {
+        observer.unobserve(currentTarget);
       }
     };
-  }, [target, observer]);
+  }, [observer]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -73,6 +70,12 @@ function NewsBoard() {
         console.log("error");
       });
   }, [page]);
+
+  const onClickMoveToTop = () => {
+    document
+      .querySelector(".topTarget")
+      .scrollIntoView({ behavior: "smooth", block: "end" });
+  };
 
   return (
     <>
@@ -132,7 +135,7 @@ function NewsBoard() {
         )}
         <div
           className="anchor"
-          onClick={MoveToTop}
+          onClick={onClickMoveToTop}
           style={{ cursor: "pointer" }}
         >
           맨 위로
