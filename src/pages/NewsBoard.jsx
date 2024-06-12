@@ -86,6 +86,7 @@ function NewsBoard() {
               href={news.link}
               key={news.id}
               target="_blank"
+              rel="noreferrer"
             >
               <div
                 className="content-img"
