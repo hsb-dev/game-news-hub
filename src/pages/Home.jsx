@@ -8,19 +8,32 @@ import { useEffect, useState } from "react";
 function Home() {
   const [categoryList, setCategoryList] = useState([]);
 
+  const [selectedPublishers, setSelectedPublishers] = useState([]);
+
   // categoryList 가져오기
   useEffect(() => {
-    fetch(
-      "https://asia-northeast3-gamenews-collect.cloudfunctions.net/categories"
-    )
+    fetch(`${process.env.REACT_APP_API_URL}/categories`)
       .then((res) => res.json())
       .then((res) => {
         setCategoryList(res.sort((a, b) => a.sort - b.sort));
+
+        // 초기 선택된 카테고리
+        const tmpList = [];
+        res.forEach((category) => {
+          category.publishers.forEach((publisher) => {
+            tmpList.push(publisher.title);
+          });
+        });
+        setSelectedPublishers(tmpList);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
+
+  const onChangeSelectedPublisher = (publishers) => {
+    setSelectedPublishers(publishers);
+  };
 
   return (
     <div className="app">
@@ -28,8 +41,15 @@ function Home() {
         <Navbar />
       </div>
       <div className="content-area">
-        <Filter categoryList={categoryList} />
-        <NewsBoard categoryList={categoryList} />
+        <Filter
+          categoryList={categoryList}
+          selectedPublishers={selectedPublishers}
+          onChangeSelectedPublisher={onChangeSelectedPublisher}
+        />
+        <NewsBoard
+          categoryList={categoryList}
+          selectedPublishers={selectedPublishers}
+        />
       </div>
     </div>
   );

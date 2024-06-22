@@ -13,7 +13,7 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault("Asia/Seoul");
 
-function NewsBoard({ categoryList }) {
+function NewsBoard({ categoryList, selectedPublishers }) {
   // News List
   const [newsList, setNewsList] = useState([]);
   const [page, setPage] = useState(0);
@@ -54,12 +54,21 @@ function NewsBoard({ categoryList }) {
   }, [observer]);
 
   useEffect(() => {
+    if (selectedPublishers.length === 0) {
+      setNewsList([]);
+      return;
+    }
     setIsLoading(true);
     setInObserve(false);
+
+    let url = `${process.env.REACT_APP_API_URL}/news?page=${page}&pageCount=${pageCount}&order=${order}`;
+
+    if (selectedPublishers.length > 0) {
+      url += `&publishers=${selectedPublishers.join(",")}`;
+    }
+
     axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/news?page=${page}&pageCount=${pageCount}&order=${order}`
-      )
+      .get(url)
       .then((response) => {
         setNewsList((prevNewsList) => [...prevNewsList, ...response.data]);
         setIsLoading(false);
@@ -70,9 +79,18 @@ function NewsBoard({ categoryList }) {
       })
       .catch(() => {
         setIsLoading(false);
-        console.log("error");
       });
-  }, [page]);
+  }, [page, selectedPublishers]);
+
+  useEffect(() => {
+    setNewsList([]);
+    setPage(0);
+  }, [selectedPublishers]);
+
+  useEffect(() => {
+    setNewsList([]);
+    onClickMoveToTop();
+  }, [selectedPublishers]);
 
   // category list 에서 컬러값만 추출
   // object 형태({})에 키값으로 publisher.title, value로 color값
@@ -151,9 +169,10 @@ function NewsBoard({ categoryList }) {
           <div
             ref={target}
             style={{ height: "1px", width: "1px", backgroundColor: "red" }}
-          >
-            target
-          </div>
+          ></div>
+        )}
+        {newsList.length === 0 && !isLoading && (
+          <div className="no-contents">해당하는 뉴스가 없습니다.</div>
         )}
         <div
           className="anchor"

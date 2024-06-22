@@ -10,7 +10,11 @@ import Footer from "../components/Footer";
 // 2. filter-media-companys display-none class 추가
 // 3. img.dropdown의 src를 dropUp으로 변경
 
-function Filter({ categoryList }) {
+function Filter({
+  categoryList,
+  selectedPublishers,
+  onChangeSelectedPublisher,
+}) {
   const [openedCategory, setOpenedCategory] = useState([]);
 
   // 열려있는 카테고리만 리스트에 담음. 리스트에 있으면 열려있는 것
@@ -32,7 +36,7 @@ function Filter({ categoryList }) {
               );
             }}
           >
-            {category.alias}{" "}
+            {category.alias}
             <img
               className="dropdown"
               src={openedCategory.includes(category.title) ? dropUp : dropDown}
@@ -44,12 +48,68 @@ function Filter({ categoryList }) {
               openedCategory.includes(category.title) ? "show" : ""
             }`}
           >
-            <div className="company" id="companyAll">
-              <img src={checkIcon} alt="check icon" />
+            <div
+              className="company"
+              id="companyAll"
+              onClick={() => {
+                if (
+                  category.publishers.every((publisher) =>
+                    selectedPublishers.includes(publisher.title)
+                  )
+                ) {
+                  // 전체 선택 해제.
+                  // 현재 category의 publisher만 삭제해야함
+                  onChangeSelectedPublisher(
+                    selectedPublishers.filter(
+                      (publisher) =>
+                        !category.publishers
+                          .map((publisher) => publisher.title)
+                          .includes(publisher)
+                    )
+                  );
+                } else {
+                  // 전체 선택
+                  // 중복 제거 후 현재 category의 publisher 추가
+                  onChangeSelectedPublisher(
+                    Array.from(
+                      new Set([
+                        ...selectedPublishers,
+                        ...category.publishers.map(
+                          (publisher) => publisher.title
+                        ),
+                      ])
+                    )
+                  );
+                }
+              }}
+            >
+              {category.publishers.every((publisher) =>
+                selectedPublishers.includes(publisher.title)
+              ) && <img src={checkIcon} alt="check icon" />}
               {category.alias.split(" ")[1]} 전체 보기
             </div>
             {category.publishers.map((publisher) => (
-              <div className="company">
+              <div
+                className="company"
+                onClick={() => {
+                  if (selectedPublishers.includes(publisher.title)) {
+                    onChangeSelectedPublisher(
+                      selectedPublishers.filter(
+                        (selectedPublisher) =>
+                          selectedPublisher !== publisher.title
+                      )
+                    );
+                  } else {
+                    onChangeSelectedPublisher([
+                      ...selectedPublishers,
+                      publisher.title,
+                    ]);
+                  }
+                }}
+              >
+                {selectedPublishers.includes(publisher.title) && (
+                  <img src={checkIcon} alt="check icon" />
+                )}
                 <div
                   className="dots"
                   style={{ background: publisher.color }}
