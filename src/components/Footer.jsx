@@ -9,7 +9,6 @@ function Footer() {
       <div className="footer-content">
         <div>© 2024 Glampers / glampers20s@gmail.com</div>
         <div>made by 박준혁 황수범</div>
-        <div>v1.1.0</div>
       </div>
     </div>
   );
