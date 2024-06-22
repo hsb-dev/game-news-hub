@@ -171,7 +171,7 @@ function NewsBoard({ categoryList, selectedPublishers }) {
             style={{ height: "1px", width: "1px", backgroundColor: "red" }}
           ></div>
         )}
-        {newsList.length === 0 && !isLoading && (
+        {newsList.length === 0 && !isLoading && categoryList.length > 0 && (
           <div className="no-contents">해당하는 뉴스가 없습니다.</div>
         )}
         <div
