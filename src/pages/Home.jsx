@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 function Home() {
   const [categoryList, setCategoryList] = useState([]);
 
+  // categoryList 가져오기
   useEffect(() => {
     fetch(
       "https://asia-northeast3-gamenews-collect.cloudfunctions.net/categories"
@@ -28,7 +29,7 @@ function Home() {
       </div>
       <div className="content-area">
         <Filter categoryList={categoryList} />
-        <NewsBoard />
+        <NewsBoard categoryList={categoryList} />
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ import Footer from "../components/Footer";
 function Filter({ categoryList }) {
   const [openedCategory, setOpenedCategory] = useState([]);
 
+  // 열려있는 카테고리만 리스트에 담음. 리스트에 있으면 열려있는 것
   useEffect(() => {
     setOpenedCategory(categoryList.map((category) => category.title));
   }, [categoryList]);

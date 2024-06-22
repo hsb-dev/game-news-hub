@@ -4,7 +4,6 @@ import axios from "axios";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import colors from "../assets/colors.json";
 import Skeleton from "../components/Skeleton";
 import "../styles/Anchor.css";
 import { logEvent } from "firebase/analytics";
@@ -14,12 +13,14 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault("Asia/Seoul");
 
-function NewsBoard() {
+function NewsBoard({ categoryList }) {
   // News List
   const [newsList, setNewsList] = useState([]);
   const [page, setPage] = useState(0);
   const [pageCount, setPageCount] = useState(12);
   const [order, setOrder] = useState("desc");
+
+  const [colors, setColors] = useState({});
 
   // Observer
   const [inObserve, setInObserve] = useState(true);
@@ -72,6 +73,18 @@ function NewsBoard() {
         console.log("error");
       });
   }, [page]);
+
+  // category list 에서 컬러값만 추출
+  // object 형태({})에 키값으로 publisher.title, value로 color값
+  useEffect(() => {
+    const tmpColors = {};
+    categoryList.forEach((category) => {
+      category.publishers.forEach((publisher) => {
+        tmpColors[publisher.title] = publisher.color;
+      });
+    });
+    setColors(tmpColors);
+  }, [categoryList]);
 
   const onClickMoveToTop = () => {
     document
