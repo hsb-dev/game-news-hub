@@ -35,7 +35,7 @@ function NewsBoard({ categoryList, selectedPublishers }) {
   };
 
   const onObserveTarget = (entries) => {
-    if (entries[0].isIntersecting && !isLoading && inObserve) {
+    if (entries[0].isIntersecting && inObserve) {
       setPage((prevPage) => prevPage + 1);
     }
   };
@@ -54,15 +54,42 @@ function NewsBoard({ categoryList, selectedPublishers }) {
   }, [observer]);
 
   useEffect(() => {
-    setIsLoading(true);
     setInObserve(false);
 
+    getNewsList();
+  }, [page]);
+
+  useEffect(() => {
     if (selectedPublishers.length === 0) {
       setNewsList([]);
       setIsLoading(false);
-      setInObserve(true);
+      setInObserve(false);
       return;
     }
+
+    setNewsList([]);
+    onClickMoveToTop();
+    if (page === 0) {
+      getNewsList();
+    } else {
+      setPage(0);
+    }
+  }, [selectedPublishers]);
+
+  // category list 에서 컬러값만 추출
+  // object 형태({})에 키값으로 publisher.title, value로 color값
+  useEffect(() => {
+    const tmpColors = {};
+    categoryList.forEach((category) => {
+      category.publishers.forEach((publisher) => {
+        tmpColors[publisher.title] = publisher.color;
+      });
+    });
+    setColors(tmpColors);
+  }, [categoryList]);
+
+  const getNewsList = () => {
+    setIsLoading(true);
 
     let url = `${process.env.REACT_APP_API_URL}/news?page=${page}&pageCount=${pageCount}&order=${order}`;
 
@@ -83,29 +110,7 @@ function NewsBoard({ categoryList, selectedPublishers }) {
       .catch(() => {
         setIsLoading(false);
       });
-  }, [page, selectedPublishers]);
-
-  useEffect(() => {
-    setNewsList([]);
-    setPage(0);
-  }, [selectedPublishers]);
-
-  useEffect(() => {
-    setNewsList([]);
-    onClickMoveToTop();
-  }, [selectedPublishers]);
-
-  // category list 에서 컬러값만 추출
-  // object 형태({})에 키값으로 publisher.title, value로 color값
-  useEffect(() => {
-    const tmpColors = {};
-    categoryList.forEach((category) => {
-      category.publishers.forEach((publisher) => {
-        tmpColors[publisher.title] = publisher.color;
-      });
-    });
-    setColors(tmpColors);
-  }, [categoryList]);
+  };
 
   const onClickMoveToTop = () => {
     document
