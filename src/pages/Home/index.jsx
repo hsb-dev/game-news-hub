@@ -1,8 +1,7 @@
-import "../styles/reset.css";
-import "../styles/Common.css";
-import Navbar from "../components/Navbar";
-import Filter from "../components/Filter";
-import NewsBoard from "./NewsBoard";
+import "../../styles/Common.css";
+import Navbar from "../../components/Navbar";
+import Filter from "../../components/Filter";
+import NewsBoard from "../../components/Home/NewsBoard.jsx";
 import { useEffect, useState } from "react";
 
 function Home() {
