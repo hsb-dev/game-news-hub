@@ -7,6 +7,12 @@ import { logEvent } from "firebase/analytics";
 import { analytics } from "../..";
 import NewsItem from "./NewsItem";
 
+const observerOptions = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 1,
+};
+
 function NewsBoard({ categoryList, selectedPublishers }) {
   // News List
   const [newsList, setNewsList] = useState([]);
@@ -22,18 +28,12 @@ function NewsBoard({ categoryList, selectedPublishers }) {
 
   const target = useRef(null);
 
-  const options = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 1,
-  };
-
   const onObserveTarget = (entries) => {
     if (entries[0].isIntersecting && inObserve) {
       setPage((prevPage) => prevPage + 1);
     }
   };
-  const observer = new IntersectionObserver(onObserveTarget, options);
+  const observer = new IntersectionObserver(onObserveTarget, observerOptions);
 
   useEffect(() => {
     const currentTarget = target.current;
@@ -48,8 +48,6 @@ function NewsBoard({ categoryList, selectedPublishers }) {
   }, [observer]);
 
   useEffect(() => {
-    setInObserve(false);
-
     getNewsList();
   }, [page]);
 
@@ -84,6 +82,7 @@ function NewsBoard({ categoryList, selectedPublishers }) {
 
   const getNewsList = () => {
     setIsLoading(true);
+    setInObserve(false);
 
     let url = `${process.env.REACT_APP_API_URL}/news?page=${page}&pageCount=${pageCount}&order=${order}`;
 
