@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../../styles/Contents.scss";
 import axios from "axios";
 import Skeleton from "../Skeleton";
@@ -128,12 +128,7 @@ function NewsBoard({ categoryList, selectedPublishers }) {
           />
         ))}
         {isLoading && <Skeleton />}
-        {inObserve && (
-          <div
-            ref={target}
-            style={{ height: "1px", width: "1px", backgroundColor: "red" }}
-          ></div>
-        )}
+        {inObserve && <div ref={target}></div>}
         {newsList.length === 0 && !isLoading && categoryList.length > 0 && (
           <div className="no-contents">해당하는 뉴스가 없습니다.</div>
         )}
