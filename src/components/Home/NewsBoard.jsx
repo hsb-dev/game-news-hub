@@ -53,12 +53,9 @@ function NewsBoard({ categoryList, selectedPublishers }) {
 
   useEffect(() => {
     if (selectedPublishers.length === 0) {
-      setNewsList([]);
-      setIsLoading(false);
-      setInObserve(false);
+      clearNewsList();
       return;
     }
-
     setNewsList([]);
     onClickMoveToTop();
     if (page === 0) {
@@ -81,6 +78,12 @@ function NewsBoard({ categoryList, selectedPublishers }) {
   }, [categoryList]);
 
   const getNewsList = () => {
+    if (isLoading) return;
+    if (selectedPublishers.length === 0) {
+      clearNewsList();
+      return;
+    }
+
     setIsLoading(true);
     setInObserve(false);
 
@@ -105,6 +108,12 @@ function NewsBoard({ categoryList, selectedPublishers }) {
       });
   };
 
+  const clearNewsList = () => {
+    setNewsList([]);
+    setIsLoading(false);
+    setInObserve(false);
+  };
+
   const onClickMoveToTop = () => {
     document
       .querySelector(".topTarget")
@@ -127,7 +136,14 @@ function NewsBoard({ categoryList, selectedPublishers }) {
           />
         ))}
         {isLoading && <Skeleton />}
-        {inObserve && <div ref={target}></div>}
+        {inObserve && (
+          <div
+            style={{
+              height: "10px",
+            }}
+            ref={target}
+          ></div>
+        )}
         {newsList.length === 0 && !isLoading && categoryList.length > 0 && (
           <div className="no-contents">해당하는 뉴스가 없습니다.</div>
         )}
