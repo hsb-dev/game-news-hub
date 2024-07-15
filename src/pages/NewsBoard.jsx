@@ -54,12 +54,15 @@ function NewsBoard({ categoryList, selectedPublishers }) {
   }, [observer]);
 
   useEffect(() => {
-    if (selectedPublishers.length === 0) {
-      setNewsList([]);
-      return;
-    }
     setIsLoading(true);
     setInObserve(false);
+
+    if (selectedPublishers.length === 0) {
+      setNewsList([]);
+      setIsLoading(false);
+      setInObserve(true);
+      return;
+    }
 
     let url = `${process.env.REACT_APP_API_URL}/news?page=${page}&pageCount=${pageCount}&order=${order}`;
 
